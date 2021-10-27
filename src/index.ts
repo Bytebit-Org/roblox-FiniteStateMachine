@@ -1,3 +1,1 @@
-export function makeHello(name: string) {
-	return `Hello from ${name}!`;
-}
+export * from "classes/FiniteStateMachine";
