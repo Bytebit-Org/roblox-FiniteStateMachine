@@ -5,6 +5,7 @@
   "main": "out/init.lua",
   "scripts": {
     "build": "rbxtsc",
+    "eslint": "npx eslint \"src/**/*.ts\" --max-warnings 0",
     "watch": "rbxtsc -w",
     "prepublishOnly": "npm run build"
   },
