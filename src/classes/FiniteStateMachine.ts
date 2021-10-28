@@ -25,7 +25,7 @@ export class FiniteStateMachine<StateType extends defined, EventType extends def
 	>;
 	private readonly stateTransitions: ReadonlyMap<StateType, ReadonlyMap<EventType, StateType>>;
 
-	private constructor(
+	protected constructor(
 		private currentState: StateType,
 		signalFactory: SignalFactory,
 		tupleKeyStateTransitions: ReadonlyMap<[StateType, EventType], StateType>,
