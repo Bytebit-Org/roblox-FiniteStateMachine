@@ -8,7 +8,7 @@ jobs:
     steps:
       - uses: actions/checkout@v1
       - name: install local npm packages
-        run: npm ci
+        run: npm i --production=false
       - name: run eslint
         run: npm run eslint
   unit-tests:
