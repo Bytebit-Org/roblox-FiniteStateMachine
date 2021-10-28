@@ -5,6 +5,7 @@
   "main": "out/init.lua",
   "scripts": {
     "build": "rbxtsc",
+    "eslint": "npx eslint \"src/**/*.ts\" --max-warnings 0",
     "watch": "rbxtsc -w",
     "prepublishOnly": "npm run build"
   },
@@ -31,6 +32,8 @@
     "typescript": "^4.4.4"
   },
   "dependencies": {
-    "@rbxts/signals-tooling": "^1.0.4"
+    "@rbxts/fitumi": "^1.0.9",
+    "@rbxts/signals-tooling": "^1.0.4",
+    "@rbxts/testez": "*"
   }
 }
