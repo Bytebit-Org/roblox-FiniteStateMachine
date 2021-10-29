@@ -4,7 +4,7 @@ on: [workflow_dispatch]
 
 jobs:
   create-release:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
       - name: get-npm-version
@@ -23,7 +23,7 @@ jobs:
       - name: install foreman packages (rojo, run-in-roblox)
         run: foreman install
       - name: run rojo build
-        run: rojo build -o .\\finite-state-machine-${{ steps.package-version.outputs.current-version }}.rbxlx
+        run: rojo build -o ./finite-state-machine-${{ steps.package-version.outputs.current-version }}.rbxlx
       - name: create-release
         uses: actions/create-release@latest
         id: create_release
@@ -41,5 +41,5 @@ jobs:
           GITHUB_TOKEN: ${{ github.token }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: .\\finite-state-machine-${{ steps.package-version.outputs.current-version }}.rbxlx
+          asset_path: ./finite-state-machine-${{ steps.package-version.outputs.current-version }}.rbxlx
           asset_name: finite-state-machine-${{ steps.package-version.outputs.current-version }}.rbxlx
