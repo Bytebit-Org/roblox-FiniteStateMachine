@@ -1,5 +1,6 @@
 import { IReadOnlySignal, ISignal } from "@rbxts/signals-tooling";
 import { SignalFactory } from "factories/SignalFactory";
+import { IReadonlyFiniteStateMachineFiniteStateMachine } from "interfaces/IReadonlyFiniteStateMachine";
 
 function convertTupleKeysToNestedMap<K1, K2, V>(
 	tupleKeysMap: ReadonlyMap<[K1, K2], V>,
@@ -17,7 +18,9 @@ function convertTupleKeysToNestedMap<K1, K2, V>(
 	return tupleKeysLookUpMap;
 }
 
-export class FiniteStateMachine<StateType extends defined, EventType extends defined> {
+export class FiniteStateMachine<StateType extends defined, EventType extends defined>
+	implements IReadonlyFiniteStateMachineFiniteStateMachine<StateType, EventType>
+{
 	public readonly stateChanged: IReadOnlySignal<(newState: StateType, oldState: StateType, event: EventType) => void>;
 
 	private readonly stateChangedFireable: ISignal<
