@@ -1,3 +1,4 @@
+import { Bin } from "@rbxts/bin";
 import { IReadOnlySignal, ISignal } from "@rbxts/signals-tooling";
 import { SignalFactory } from "factories/SignalFactory";
 import { IReadonlyFiniteStateMachineFiniteStateMachine } from "interfaces/IReadonlyFiniteStateMachine";
@@ -23,6 +24,8 @@ export class FiniteStateMachine<StateType extends defined, EventType extends def
 {
 	public readonly stateChanged: IReadOnlySignal<(newState: StateType, oldState: StateType, event: EventType) => void>;
 
+	private readonly bin: Bin;
+	private isDestroyed = false;
 	private readonly stateChangedFireable: ISignal<
 		(newState: StateType, oldState: StateType, event: EventType) => void
 	>;
@@ -33,10 +36,14 @@ export class FiniteStateMachine<StateType extends defined, EventType extends def
 		signalFactory: SignalFactory,
 		tupleKeyStateTransitions: ReadonlyMap<[StateType, EventType], StateType>,
 	) {
+		this.bin = new Bin();
 		this.stateTransitions = convertTupleKeysToNestedMap(tupleKeyStateTransitions);
 
 		this.stateChangedFireable = signalFactory.createInstance();
 		this.stateChanged = this.stateChangedFireable;
+
+		this.bin.add(this.stateChangedFireable);
+		this.bin.add(() => (this.isDestroyed = true));
 	}
 
 	public static create<StateType, EventType>(
@@ -46,11 +53,23 @@ export class FiniteStateMachine<StateType extends defined, EventType extends def
 		return new FiniteStateMachine(initialState, new SignalFactory(), stateTransitions);
 	}
 
+	public destroy() {
+		if (this.isDestroyed) {
+			warn(debug.traceback(`Attempt to destroy an already destroyed instance of type "${getmetatable(this)}"`));
+		}
+
+		this.bin.destroy();
+	}
+
 	public getCurrentState(): StateType {
+		this.assertNotDestroyed();
+
 		return this.currentState;
 	}
 
 	public handleEvent(event: EventType) {
+		this.assertNotDestroyed();
+
 		const newState = this.stateTransitions.get(this.currentState)?.get(event);
 		if (newState === undefined) {
 			throw `Invalid event '${event}' while in state '${this.currentState}'`;
@@ -60,5 +79,11 @@ export class FiniteStateMachine<StateType extends defined, EventType extends def
 		this.currentState = newState;
 
 		this.stateChangedFireable.fire(newState, oldState, event);
+	}
+
+	private assertNotDestroyed() {
+		if (this.isDestroyed) {
+			throw `Attempt to call a method on an already destroyed instance of type "${getmetatable(this)}"`;
+		}
 	}
 }
