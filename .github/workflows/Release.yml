@@ -43,3 +43,4 @@ jobs:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
           asset_path: ./finite-state-machine-${{ steps.package-version.outputs.current-version }}.rbxlx
           asset_name: finite-state-machine-${{ steps.package-version.outputs.current-version }}.rbxlx
+          asset_content_type: form
