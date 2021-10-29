@@ -23,7 +23,7 @@ jobs:
       - name: install foreman packages (rojo, run-in-roblox)
         run: foreman install
       - name: run rojo build
-        run: rojo build -o ./finite-state-machine-${{ steps.package-version.outputs.current-version }}.rbxlx
+        run: rojo build -o ./finite-state-machine-${{ steps.package-version.outputs.current-version }}.rbxmx
       - name: create-release
         uses: actions/create-release@latest
         id: create_release
@@ -31,7 +31,7 @@ jobs:
           draft: false
           prerelease: false
           release_name: ${{ steps.package-version.outputs.current-version }}
-          tag_name: ${{ github.ref }}-release
+          tag_name: ${{ github.ref }}-release-${{ steps.package-version.outputs.current-version }}
           body_path: CHANGELOG.md
         env:
           GITHUB_TOKEN: ${{ github.token }}
@@ -41,6 +41,6 @@ jobs:
           GITHUB_TOKEN: ${{ github.token }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./finite-state-machine-${{ steps.package-version.outputs.current-version }}.rbxlx
-          asset_name: finite-state-machine-${{ steps.package-version.outputs.current-version }}.rbxlx
+          asset_path: ./finite-state-machine-${{ steps.package-version.outputs.current-version }}.rbxmx
+          asset_name: finite-state-machine-${{ steps.package-version.outputs.current-version }}.rbxmx
           asset_content_type: form
