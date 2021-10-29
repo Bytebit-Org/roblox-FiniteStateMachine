@@ -1,6 +1,6 @@
 {
   "name": "@rbxts/finite-state-machine",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "A simple Finite State Machine implementation for Roblox development written using roblox-ts.",
   "main": "out/init.lua",
   "scripts": {
@@ -40,6 +40,7 @@
     "typescript": "^4.4.4"
   },
   "dependencies": {
+    "@rbxts/bin": "^1.0.1",
     "@rbxts/fitumi": "^1.0.9",
     "@rbxts/signals-tooling": "^1.0.6",
     "@rbxts/testez": "*"
