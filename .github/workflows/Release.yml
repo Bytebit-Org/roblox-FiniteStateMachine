@@ -45,7 +45,10 @@ jobs:
           asset_name: finite-state-machine-${{ steps.package-version.outputs.current-version }}.rbxmx
           asset_content_type: form
       - name: upload rbxmx file to Roblox
-        run: echo "hi"
+        run: |
+          cd ./scripts
+          python upload_model.py -a ${{ secrets.ASSET_ID }} -f ../finite-state-machine-${{ steps.package-version.outputs.current-version }}.rbxmx -r ${{ secrets.UPLOADER_BOT_ROBLOSECURITY }}
+          cd ..
       - name: prepare wally package contents
         run: |
           mkdir -p ~/temp/finite-state-machine
