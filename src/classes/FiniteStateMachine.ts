@@ -62,13 +62,13 @@ export class FiniteStateMachine<StateType extends defined, EventType extends def
 	}
 
 	public getCurrentState(): StateType {
-		this.assertNotDestroyed();
+		this.assertIsNotDestroyed();
 
 		return this.currentState;
 	}
 
 	public handleEvent(event: EventType) {
-		this.assertNotDestroyed();
+		this.assertIsNotDestroyed();
 
 		const newState = this.stateTransitions.get(this.currentState)?.get(event);
 		if (newState === undefined) {
@@ -81,7 +81,7 @@ export class FiniteStateMachine<StateType extends defined, EventType extends def
 		this.stateChangedFireable.fire(newState, oldState, event);
 	}
 
-	private assertNotDestroyed() {
+	private assertIsNotDestroyed() {
 		if (this.isDestroyed) {
 			throw `Attempt to call a method on an already destroyed instance of type "${getmetatable(this)}"`;
 		}
