@@ -1,10 +1,11 @@
 {
   "name": "@rbxts/finite-state-machine",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "A simple Finite State Machine implementation for Roblox development written using roblox-ts.",
   "main": "out/init.lua",
   "scripts": {
     "build": "rbxtsc",
+    "docs": "typedoc src/index.ts",
     "eslint": "npx eslint \"src/**/*.ts\" --max-warnings 0",
     "watch": "rbxtsc -w",
     "prepublishOnly": "npm run build"
@@ -29,7 +30,7 @@
   },
   "devDependencies": {
     "@rbxts/compiler-types": "^1.2.7-types.0",
-    "@rbxts/types": "^1.0.545",
+    "@rbxts/types": "^1.0.546",
     "@typescript-eslint/eslint-plugin": "^5.2.0",
     "@typescript-eslint/parser": "^5.2.0",
     "eslint": "^8.1.0",
@@ -37,6 +38,8 @@
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-roblox-ts": "^0.0.32",
     "prettier": "^2.4.1",
+    "typedoc": "^0.22.7",
+    "typedoc-plugin-markdown": "^3.11.3",
     "typescript": "^4.4.4"
   },
   "dependencies": {
