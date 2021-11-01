@@ -1,0 +1,9 @@
+[package]
+name = "bytebit/finite-state-machine"
+description = "A simple Finite State Machine implementation for Roblox development written using roblox-ts."
+version = "1.0.0"
+license = "MIT"
+registry = "https://github.com/UpliftGames/wally-index"
+realm = "shared"
+
+[dependencies]
