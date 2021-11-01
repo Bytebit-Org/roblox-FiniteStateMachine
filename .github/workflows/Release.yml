@@ -47,7 +47,7 @@ jobs:
       - name: upload rbxmx file to Roblox
         run: |
           cd ./scripts
-          python upload_model.py -a ${{ secrets.ASSET_ID }} -f ../finite-state-machine-${{ steps.package-version.outputs.current-version }}.rbxmx -r ${{ secrets.UPLOADER_BOT_ROBLOSECURITY }}
+          python upload_model.py -a ${{ secrets.ASSET_ID }} -f ../finite-state-machine-${{ steps.package-version.outputs.current-version }}.rbxmx -r "${{ secrets.UPLOADER_BOT_ROBLOSECURITY }}"
           cd ..
       - name: prepare wally package contents
         run: |
