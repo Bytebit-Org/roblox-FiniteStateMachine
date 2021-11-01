@@ -57,6 +57,6 @@ jobs:
       - name: prepare wally auth
         run: |
           mkdir ~/.wally
-          echo -e "${{ secrets.WALLY_AUTH }}" > ~/.wally/auth.toml
+          echo -e '${{ secrets.WALLY_AUTH }}' > ~/.wally/auth.toml
       - name: publish wally package
         run: wally publish --project-path ~/temp/finite-state-machine/
