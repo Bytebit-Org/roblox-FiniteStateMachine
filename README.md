@@ -26,7 +26,7 @@ npm i @rbxts/finite-state-machine
 ### Wally
 [Wally](https://github.com/UpliftGames/wally/) users can install this package by adding the following line to their `Wally.toml` under `[dependencies]`:
 ```
-FiniteStateMachine = "bytebit/finite-state-machine@1.0.6"
+FiniteStateMachine = "bytebit/finite-state-machine@1.0.8"
 ```
 
 Then just run `wally install`.
