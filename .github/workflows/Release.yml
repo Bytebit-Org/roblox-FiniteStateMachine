@@ -48,7 +48,7 @@ jobs:
         run: echo "hi"
       - name: prepare wally package contents
         run: |
-          mkdir ~/temp/finite-state-machine
+          mkdir -p ~/temp/finite-state-machine
           cp -r ./{include,out} ~/temp/finite-state-machine/
           cp ./{CHANGELOG.md,LICENSE,README.md,wally.lock,wally.toml} ~/temp/finite-state-machine/
           cp ./luau-model.project.json ~/temp/finite-state-machine/default.project.json
