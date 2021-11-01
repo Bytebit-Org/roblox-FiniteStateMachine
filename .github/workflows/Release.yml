@@ -14,7 +14,15 @@ jobs:
         run: npm i -g roblox-ts
       - name: install local npm packages
         run: npm i --production=false
-      - name: compile typescript code
+      - name: compile typescript code for package
+        run: rbxtsc --type=package
+      - name: publish to npm
+        run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
+      - name: clean-up package output
+        run: rm -rf ./out
+      - name: compile typescript code for model
         run: rbxtsc --type=model
       - name: install foreman
         uses: rojo-rbx/setup-foreman@v1
