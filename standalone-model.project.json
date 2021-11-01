@@ -1,5 +1,5 @@
 {
-    "name": "FiniteStateMachine",
+    "name": "finite-state-machine",
     "globIgnorePaths": [
         "**/package.json",
         "**/tsconfig.json"
