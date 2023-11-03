@@ -61,7 +61,7 @@ _Implements everything from `IReadonlyFiniteStateMachine`._
 This is the root of this package.
 
 #### Construction
-In order to construct a `FiniteStateMachine` instance, you will need to define your states, events, and the transition relationships between them.
+In order to construct a `FiniteStateMachine` instance, you will need to define your states, events, and the transition relationships between them. The transition relationships are represented using a nested tuple of `[[fromState, event], toState]`.
 
 Take this on/off switch as an example:
 ```ts
