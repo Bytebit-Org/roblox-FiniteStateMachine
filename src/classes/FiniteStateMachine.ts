@@ -1,7 +1,7 @@
 import { Bin } from "@rbxts/bin";
 import { IReadOnlySignal, ISignal } from "@rbxts/signals-tooling";
 import { SignalFactory } from "factories/SignalFactory";
-import { IReadonlyFiniteStateMachineFiniteStateMachine } from "interfaces/IReadonlyFiniteStateMachine";
+import { IReadonlyFiniteStateMachine } from "interfaces/IReadonlyFiniteStateMachine";
 
 function convertTupleKeysToNestedMap<K1, K2, V>(
 	tupleKeysMap: ReadonlyMap<[K1, K2], V>,
@@ -20,7 +20,7 @@ function convertTupleKeysToNestedMap<K1, K2, V>(
 }
 
 export class FiniteStateMachine<StateType extends defined, EventType extends defined>
-	implements IReadonlyFiniteStateMachineFiniteStateMachine<StateType, EventType>
+	implements IReadonlyFiniteStateMachine<StateType, EventType>
 {
 	public readonly stateChanged: IReadOnlySignal<(newState: StateType, oldState: StateType, event: EventType) => void>;
 
@@ -46,7 +46,7 @@ export class FiniteStateMachine<StateType extends defined, EventType extends def
 		this.bin.add(() => (this.isDestroyed = true));
 	}
 
-	public static create<StateType, EventType>(
+	public static create<StateType extends defined, EventType extends defined>(
 		initialState: StateType,
 		stateTransitions: ReadonlyMap<[StateType, EventType], StateType>,
 	) {
